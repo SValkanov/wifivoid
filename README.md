@@ -5,6 +5,8 @@ Ruby script for continuously jam all wifi clients and access points within range
 
 ![fetch](https://user-images.githubusercontent.com/8790422/45251197-ad39d380-b34a-11e8-98f8-c24421c510e7.png)
 
+I've tested this well only under Ubuntu. Any feedback is welcome.
+
 Requirements
 ----
 
