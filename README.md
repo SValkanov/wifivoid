@@ -3,7 +3,7 @@ wifivoid [![License](https://img.shields.io/github/license/mashape/apistatus.svg
 
 Ruby script for continuously jam all wifi clients and access points within range. The effectiveness of the script depends on  your wireless card.
 
-![fetch](https://user-images.githubusercontent.com/8790422/45251197-ad39d380-b34a-11e8-98f8-c24421c510e7.png)
+![fetch](https://user-images.githubusercontent.com/8790422/47272565-1f2f4a80-d590-11e8-9eb6-8f923d4f4849.png)
 
 I've tested this well only under Ubuntu. Any feedback is welcome.
 

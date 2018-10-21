@@ -23,6 +23,10 @@ class Dot11Packet
     @socket.write(pkt)
   end
 
+  def add_noise(addresses)
+    @noise = [@noise, addresses].reduce([], :concat) if addresses.any?
+  end
+
   def is_noise?
     @noise.include?(@addr1) || @noise.include?(@addr2)
   end

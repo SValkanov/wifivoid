@@ -18,7 +18,7 @@ def banner
 end
 
 def version
-  "1.0.0"
+  "1.1.0"
 end
 
 def rotation_chars
@@ -41,6 +41,10 @@ def observe_time
   (input_options[:observe_time] || 5).to_i
 end
 
+def exceptions
+  input_options[:exceptions] || []
+end
+
 def collect_before?
   input_options[:collect_before]
 end
@@ -52,6 +56,7 @@ def parse_flags
     opt.on('--channels         Specific channels to scan (e.g. "1,2") (default 0-11)') { |o| options[:channels] = if o; o.delete(' ').split(','); end; }
     opt.on('--collect-before   Collect targets before start deauthenticating (default false)') { |o| option[:collect_before] = o || false }
     opt.on('--observe_time     Time in seconds for observing each channel in before deauthenticating (default 5)') { |o| options[:observe_time] = o || 5 }
+    opt.on('--exceptions       Select exceptional macs for deauthenticating (e.g. "11:22,88:99") (default [])') { |o| options[:exceptions] = if o; o.delete(' ').split(','); end; }
   end.parse!
   return options
 rescue
@@ -107,6 +112,7 @@ end
 def start_deauthentication
   @dot11 = Dot11Packet.new
   @dot11.config_socket(adapter, @mac_address)
+  @dot11.add_noise(exceptions) if exceptions.any?
   loop do
     @channel_map.clone.nested_each do |ap, clients, channel|
       clients.map { |client| send_deauth_packets(channel, ap, client) }
